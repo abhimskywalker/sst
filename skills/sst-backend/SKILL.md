@@ -490,10 +490,14 @@ await client.send(new RunTaskCommand({
 
 ## Common Patterns
 
-### API with Authentication
+### API with Authentication (OpenAuth)
 
 ```typescript
-const userPool = new sst.aws.CognitoUserPool("MyUserPool");
+// Set up OpenAuth
+const auth = new sst.aws.Auth("MyAuth", {
+  issuer: "auth/index.handler"
+});
+
 const api = new sst.aws.ApiGatewayV2("MyApi");
 
 api.route("POST /public", "src/public.handler");
@@ -501,8 +505,8 @@ api.route("GET /protected", {
   handler: "src/protected.handler",
   auth: {
     jwt: {
-      issuer: userPool.issuer,
-      audiences: [userPool.clientId]
+      issuer: auth.url,
+      audiences: ["my-api"]
     }
   }
 });

@@ -33,6 +33,7 @@ Use this skill when:
 | SolidStart | `sst.aws.SolidStart` |
 | Nuxt | `sst.aws.Nuxt` |
 | TanStack Start | `sst.aws.TanStackStart` |
+| React Router | `sst.aws.React` |
 | Angular | `sst.aws.Angular` |
 | Static Sites | `sst.aws.StaticSite` |
 
@@ -187,6 +188,15 @@ new sst.aws.Nuxt("MyWeb", {
 
 ```typescript
 new sst.aws.TanStackStart("MyWeb", {
+  domain: "my-app.com",
+  link: [bucket]
+});
+```
+
+## React Router
+
+```typescript
+new sst.aws.React("MyWeb", {
   domain: "my-app.com",
   link: [bucket]
 });
